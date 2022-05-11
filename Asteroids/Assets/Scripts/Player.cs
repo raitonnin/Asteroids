@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     public float _turnDirection;
     public float _thrustSpeed;
     public float _turnSpeed;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -42,7 +43,7 @@ public class Player : MonoBehaviour
             //transform.Rotate(Vector3.forward, (_turnDirection * this._turnSpeed));
             rb.AddTorque(_turnDirection * this._turnSpeed);
         }
-
+        
     }
     private void Shoot()
     {
@@ -60,7 +61,10 @@ public class Player : MonoBehaviour
 
             FindObjectOfType<GameManager>().PlayerDied();
         }
+
     }
+
+
 }
 
 
