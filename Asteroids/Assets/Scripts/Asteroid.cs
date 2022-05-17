@@ -19,6 +19,7 @@ public class Asteroid : MonoBehaviour
     private Rigidbody2D _rigidbody;
 
     public float maxLifetime = 30.0f;
+    [SerializeField] AudioClip[] _clips;
 
     private void Awake()
     {
@@ -44,6 +45,8 @@ public class Asteroid : MonoBehaviour
     {
         if (collision.gameObject.tag == "Bullet")
         {
+            var clip = _clips[0];
+        AudioSource.PlayClipAtPoint(clip, new Vector3(0, 0, 0));
             if ((this.size * 0.5f) > this.minSize)
             {
                 CreateSplit();

@@ -24,7 +24,12 @@ public class GameManager : MonoBehaviour
 
     public float smallAsteroid  =  .75f;
     public float mediumAsteroid =  1.2f;
+
    
+   private void Awake()
+   {
+       
+   }
        private void Start()
     {
         NewGame();
@@ -55,6 +60,8 @@ public class GameManager : MonoBehaviour
     {
         explosion.transform.position = asteroid.transform.position;
         explosion.Play();
+        
+        
 
         if (asteroid.size < smallAsteroid){
             SetScore(score + 100);
@@ -70,6 +77,7 @@ public class GameManager : MonoBehaviour
         explosion.transform.position = player.transform.position;
         explosion.Play();
         SetLives(lives -1 );
+
 
         if (this.lives <= 0)
         {

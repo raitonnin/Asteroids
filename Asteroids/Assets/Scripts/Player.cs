@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class Player : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class Player : MonoBehaviour
 
      public float respawnDelay = 3f;
     public float respawnInvulnerability = 3f;
+
+    [SerializeField] AudioClip[] _clips;
+    [SerializeField] AudioMixerGroup[] mixerGroup; 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -58,6 +62,8 @@ public class Player : MonoBehaviour
     {
         Bullet bullet = Instantiate(this.bulletPrefab, this.transform.position, this.transform.rotation);
         bullet.Project(this.transform.up);
+        var clip = _clips[0];
+        GetComponent<AudioSource>().PlayOneShot(clip , 1);
     }
         private void TurnOnCollisions()
     {
@@ -67,6 +73,8 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "Asteroid")
         {
+            var clip = _clips[1];
+        AudioSource.PlayClipAtPoint(clip, this.transform.position, 1);
             rb.velocity = Vector3.zero;
             rb.angularVelocity = 0.0f;
 
